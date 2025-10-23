@@ -7,8 +7,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 export async function POST(request: NextRequest) {
   try {
     // Parse the request body
+    const systemPrompt = "you are a good researcher"
     const body = await request.json();
-    const { prompt, model = 'gemini-1.5-flash' } = body;
+    const { prompt =  systemPrompt, model = 'gemini-1.5-flash' } = body;
 
     // Validate the prompt
     if (!prompt) {
